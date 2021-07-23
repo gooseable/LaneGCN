@@ -846,12 +846,12 @@ class PredNet(nn.Module):
         # return feats ok
         cls = self.cls(feats).view(-1, self.num_mods)
 
-        cls, sort_idcs = cls.sort(1, descending=True)
-        row_idcs = torch.arange(len(sort_idcs)).long().to(sort_idcs.device)
-        row_idcs = row_idcs.view(-1, 1).repeat(1, sort_idcs.size(1)).view(-1)
-        sort_idcs = sort_idcs.view(-1)
-        # return sort_idcs
-        reg = reg[row_idcs, sort_idcs].view(cls.size(0), cls.size(1), -1, 2)
+        # cls, sort_idcs = cls.sort(1, descending=True)
+        # row_idcs = torch.arange(len(sort_idcs)).long().to(sort_idcs.device)
+        # row_idcs = row_idcs.view(-1, 1).repeat(1, sort_idcs.size(1)).view(-1)
+        # sort_idcs = sort_idcs.view(-1)
+        # # return sort_idcs
+        # reg = reg[row_idcs, sort_idcs].view(cls.size(0), cls.size(1), -1, 2)
         # return reg ok but warning
         # out:Dict[str, List[Tensor]] = {'cls':[], 'reg':[]}
         out:List[List[Tensor]] = [[], []]
